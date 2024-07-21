@@ -8,7 +8,7 @@ TIMEZONE = 'Asia/Bangkok'
 
 DEFAULT_LANG = 'en'
 
-THEME = '/my-blog/themes/Flex'
+THEME = '/themes/Flex'
 #THEME = '/MyBlog/themes/pelican-fh5co-marble'
 #PLUGIN_PATHS = ['/MyBlog/pelican-plugins']
 #PLUGINS = ['i18n_subsites','tipue_search']
@@ -38,4 +38,4 @@ SOCIAL = (
 DEFAULT_PAGINATION = 10
 
 # Uncomment following line if you want document-relative URLs when developing
-# RELATIVE_URLS = True
+RELATIVE_URLS = True
