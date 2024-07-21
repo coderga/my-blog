@@ -3,7 +3,7 @@ name: Build and Deploy Pelican Blog
 on:
   push:
     branches:
-      - main # Hoặc nhánh mà bạn sử dụng để chứa mã nguồn
+      - main
 
 jobs:
   build:
@@ -16,12 +16,12 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
-          python-version: "3.9" # Hoặc phiên bản Python mà bạn sử dụng
+          python-version: "3.9"
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pelican markdown  # Cài đặt Pelican và các phụ thuộc cần thiết
+          pip install pelican markdown
 
       - name: Build Pelican site
         run: pelican content -o output -s pelicanconf.py
