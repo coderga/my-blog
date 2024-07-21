@@ -3,33 +3,32 @@ name: Build and Deploy Pelican Blog
 on:
   push:
     branches:
-      - main # Chạy workflow khi có thay đổi trên nhánh main (có thể thay đổi thành nhánh bạn sử dụng)
+      - main # Hoặc nhánh mà bạn sử dụng để chứa mã nguồn
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
-          python-version: "3.9" # Đảm bảo sử dụng phiên bản Python phù hợp
+          python-version: "3.9" # Hoặc phiên bản Python mà bạn sử dụng
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pelican ghp-import markdown  # Cài đặt Pelican và các dependencies cần thiết
+          pip install pelican markdown  # Cài đặt Pelican và các phụ thuộc cần thiết
 
       - name: Build Pelican site
-        run: |
-          pelican content -o output -s pelicanconf.py
+        run: pelican content -o output -s pelicanconf.py
 
       - name: Deploy to GitHub Pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Sử dụng token mặc định của GitHub Actions
-        run: |
-          ghp-import -m "Deploy to GitHub Pages" -b gh-pages output
-          git push -fq origin gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: output
