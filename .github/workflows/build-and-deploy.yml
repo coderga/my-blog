@@ -3,33 +3,33 @@ name: Build and Deploy Pelican Blog
 on:
   push:
     branches:
-      - main  # Chạy workflow khi có thay đổi trên nhánh main (có thể thay đổi thành nhánh bạn sử dụng)
+      - main # Chạy workflow khi có thay đổi trên nhánh main (có thể thay đổi thành nhánh bạn sử dụng)
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.9'  # Đảm bảo sử dụng phiên bản Python phù hợp
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.9" # Đảm bảo sử dụng phiên bản Python phù hợp
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pelican ghp-import markdown  # Cài đặt Pelican và các dependencies cần thiết
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pelican ghp-import markdown  # Cài đặt Pelican và các dependencies cần thiết
 
-    - name: Build Pelican site
-      run: |
-        pelican content -o output -s pelicanconf.py
+      - name: Build Pelican site
+        run: |
+          pelican content -o output -s pelicanconf.py
 
-    - name: Deploy to GitHub Pages
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Sử dụng token mặc định của GitHub Actions
-      run: |
-        ghp-import -m "Deploy to GitHub Pages" -b gh-pages output
-        git push -fq origin gh-pages
+      - name: Deploy to GitHub Pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Sử dụng token mặc định của GitHub Actions
+        run: |
+          ghp-import -m "Deploy to GitHub Pages" -b gh-pages output
+          git push -fq origin gh-pages
