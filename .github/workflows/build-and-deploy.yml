@@ -32,6 +32,8 @@ jobs:
           git config --global user.name "coderga"
 
       - name: Deploy to GitHub Pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd output
           git init
@@ -40,5 +42,3 @@ jobs:
           git add .
           git commit -m "Deploy Pelican site"
           git push -f origin gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
