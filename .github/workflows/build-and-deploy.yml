@@ -24,6 +24,10 @@ jobs:
 
       - name: Build Pelican site
         run: pelican content -o output -s pelicanconf.py
+      - name: Set up Git config
+        run: |
+          git config --global --unset credential.helper
+          git config --global credential.helper cache
       - name: Setup git
         run: |
           git config --global user.name "coderga"
