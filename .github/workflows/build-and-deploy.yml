@@ -12,10 +12,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          repository: "coderga/coderga.github.io"
-          ssh-key: ${{ secrets.GITHUB_TOKEN }}
-          path: "output"
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
