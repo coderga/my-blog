@@ -34,9 +34,9 @@ jobs:
         run: |
           cd output
           git init
+          git remote add origin https://coderga@github.com/coderga/my-blog.git
           git add .
           git commit -m "Deploy Pelican site"
-          git remote set-url origin https://coderga@github.com/coderga/my-blog.git
           git branch -M gh-pages
           git push -f origin gh-pages
 
