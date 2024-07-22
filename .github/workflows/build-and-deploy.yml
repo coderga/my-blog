@@ -23,10 +23,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install pelican markdown
 
-      - name: Clone Flex theme
-        run: |
-          git clone https://github.com/alexandrevicenzi/Flex.git themes/Flex
-
       - name: Build Pelican site
         run: pelican content -o output -s pelicanconf.py
 
