@@ -97,7 +97,7 @@ ftp_upload: publish
 github: publish
 	cd $(OUTPUTDIR) && rm -rf .git
 	cd $(OUTPUTDIR) && git init
-	cd $(OUTPUTDIR) && git remote add origin https://github.com/coderga/my-blog.git
+	cd $(OUTPUTDIR) && git remote add origin https://coderga@github.com/coderga/my-blog.git
 	cd $(OUTPUTDIR) && git checkout -B $(GITHUB_PAGES_BRANCH)
 	cd $(OUTPUTDIR) && git add .
 	cd $(OUTPUTDIR) && git commit -m "Publishing to gh-pages"
