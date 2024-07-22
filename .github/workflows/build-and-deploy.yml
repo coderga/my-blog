@@ -38,8 +38,7 @@ jobs:
           git commit -m "Deploy Pelican site"
           git remote set-url origin https://coderga@github.com/coderga/my-blog.git
           git branch -M gh-pages
-          git push --set-upstream gh-pages
+          git push -f origin gh-pages
 
-#          git push -f origin gh-pages
-
+#          git push --set-upstream gh-pages
 #git remote add origin https://github.com/coderga/my-blog.git
