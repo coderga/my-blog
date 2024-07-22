@@ -27,9 +27,20 @@ jobs:
       - name: Build Pelican site
         run: pelican content -o output -s pelicanconf.py
 
+      # - name: Deploy to GitHub Pages
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_branch: gh-pages
+      #     publish_dir: output
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: output
+        run: |
+          cd output
+          git init
+          git remote add origin https://github.com/coderga/my-blog.git
+          git checkout -B gh-pages
+          git add .
+          git commit -m "Deploy Pelican site"
+          git push -f origin gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
