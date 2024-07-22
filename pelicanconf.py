@@ -8,7 +8,7 @@ TIMEZONE = 'Asia/Bangkok'
 
 DEFAULT_LANG = 'en'
 
-THEME = '/themes/Flex'
+THEME = '/my-blog/themes/Flex'
 #THEME = '/MyBlog/themes/pelican-fh5co-marble'
 #PLUGIN_PATHS = ['/MyBlog/pelican-plugins']
 #PLUGINS = ['i18n_subsites','tipue_search']
