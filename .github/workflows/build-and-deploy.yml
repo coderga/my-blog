@@ -32,8 +32,8 @@ jobs:
         run: |
           cd output
           git init
-          git config user.name "github-actions[bot]"
-          git config user.email "72096830+coderga@users.noreply.github.com"
+          git config user.name "coderga"
+          git config user.email "quanggiatrang@gmail.com"
           git add .
           git commit -m "Deploy Pelican site"
           git remote add origin https://github.com/coderga/my-blog.git
