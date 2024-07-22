@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          repository: "my-blog/coderga.github.io"
+          repository: "coderga/coderga.github.io"
           ssh-key: ${{ secrets.GITHUB_TOKEN }}
           path: "output"
       - name: Set up Python
