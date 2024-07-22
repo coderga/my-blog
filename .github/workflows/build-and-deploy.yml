@@ -36,7 +36,7 @@ jobs:
           git init
           git add .
           git commit -m "Deploy Pelican site"
-          git remote add origin https://github.com/{USER_NAME}/{REPOSITORY_NAME}.git
+          git remote add origin https://github.com/coderga/my-blog.git
           git branch -M gh-pages
           git push --set-upstream origin gh-pages
 
