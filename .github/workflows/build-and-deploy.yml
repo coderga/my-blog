@@ -12,7 +12,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
+        with:
+          repository: "my-blog/coderga.github.io"
+          ssh-key: ${{ secrets.GITHUB_TOKEN }}
+          path: "output"
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
@@ -25,15 +28,16 @@ jobs:
 
       - name: Build Pelican site
         run: pelican content -o output -s pelicanconf.py
-
+      - name: Setup git
+        run: |
+          git config --global user.name "coderga"
+          git config --global user.email "quanggiatrang@gmail.com"
       - name: Deploy to GitHub Pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd output
           git init
-          git config user.name "coderga"
-          git config user.email "quanggiatrang@gmail.com"
           git add .
           git commit -m "Deploy Pelican site"
           git remote add origin https://github.com/coderga/my-blog.git
