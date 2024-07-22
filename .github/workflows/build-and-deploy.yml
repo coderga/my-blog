@@ -39,5 +39,3 @@ jobs:
           git remote add origin https://github.com/coderga/my-blog.git
           git branch -M gh-pages
           git push -f origin gh-pages
-
-# git remote add origin https://github.com/coderga/my-blog.git
