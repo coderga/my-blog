@@ -26,19 +26,15 @@ jobs:
       - name: Build Pelican site
         run: pelican content -o output -s pelicanconf.py
 
-      - name: Configure Git
-        run: |
-          git config --global user.email "quanggiatrang@gmail.com"
-          git config --global user.name "coderga"
-
       - name: Deploy to GitHub Pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd output
           git init
-          git remote add origin https://github.com/coderga/my-blog.git
-          git checkout -B gh-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           git commit -m "Deploy Pelican site"
+          git remote add origin https://github.com/coderga/my-blog.git
           git push -f origin gh-pages
