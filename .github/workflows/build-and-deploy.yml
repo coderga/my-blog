@@ -36,6 +36,8 @@ jobs:
           git config user.email "quanggiatrang@gmail.com"
           git add .
           git commit -m "Deploy Pelican site"
-          git remote add origin https://github.com/coderga/my-blog.git
+          git remote set-url origin https://coderga@github.com/coderga/my-blog.git
           git branch -M gh-pages
           git push -f origin gh-pages
+
+# git remote add origin https://github.com/coderga/my-blog.git
