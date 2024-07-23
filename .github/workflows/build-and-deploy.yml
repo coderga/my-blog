@@ -28,13 +28,12 @@ jobs:
         run: |
           git config --global user.name "coderga"
           git config --global user.email "quanggiatrang@gmail.com"
+          cd output
+          git checkout gh-pages
       - name: Deploy to GitHub Pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cd output
-          git init
-          git remote add origin https://github.com/coderga/my-blog.git
           git add .
           git commit -m "Initial commit"
           git branch -M gh-pages
