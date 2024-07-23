@@ -12,6 +12,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
@@ -31,13 +32,8 @@ jobs:
         run: |
           cd output
           git init
-          git config user.name "coderga"
-          git config user.email "quanggiatrang@gmail.com"
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
           git add .
           git commit -m "Deploy Pelican site"
-          git remote add origin https://github.com/coderga/my-blog.git || true
-          git branch -M gh-pages
-          git push -f origin gh-pages
-
-#          git push --set-upstream gh-pages
-#git remote add origin https://github.com/coderga/my-blog.git
+          git push -f https://github.com/coderga/my-blog.git HEAD:gh-pages
