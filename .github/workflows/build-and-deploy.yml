@@ -28,15 +28,9 @@ jobs:
         run: |
           git config --global user.name "coderga"
           git config --global user.email "quanggiatrang@gmail.com"
-
       - name: Deploy to GitHub Pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          cd output
-          git init
-          git remote add origin https://github.com/coderga/my-blog.git
-          git add .
-          git commit -m "Initial commit"
-          git branch -M gh-pages
-          git push -u origin gh-pages
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages # Nhánh mà bạn muốn triển khai
+          folder: output # Thư mục chứa trang web đã được build
+          token: ${{ secrets.GITHUB_TOKEN }}
