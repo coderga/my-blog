@@ -1,42 +1,38 @@
-name: Build and Deploy Pelican Site
+name: Build and Deploy Pelican Site to GitHub Pages
 
 on:
   push:
     branches:
-      - main
+      - main # Thay thế 'main' bằng tên nhánh chính của bạn nếu khác
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v2
         with:
-          persist-credentials: false
+          submodules: true # Nếu trang web của bạn sử dụng submodules
 
       - name: Set up Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v2
         with:
-          python-version: "3.9"
+          python-version: "3.x" # Sử dụng phiên bản Python phù hợp với dự án của bạn
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pelican markdown
+          pip install pelican ghp-import
 
-      - name: Build Pelican site
-        run: pelican content -o output -s pelicanconf.py
+      - name: Build the Pelican site
+        run: |
+          make html
 
       - name: Deploy to GitHub Pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          cd output
-          git init
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add .
-          git commit -m "Deploy Pelican site"
-          git remote add origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/coderga/my-blog.git
-          git push -f origin HEAD:gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
+          keep_files: false
+          user_name: "github-actions[bot]"
+          user_email: "github-actions[bot]@users.noreply.github.com"
+          commit_message: "Deploy Pelican site to GitHub Pages"
